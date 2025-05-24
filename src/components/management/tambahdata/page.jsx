@@ -16,7 +16,7 @@ const Tambahmanagement = () => {
         setloading(true)
         const status = 'belum'
         const data = { pekerjaan, tanggal, status }
-        const response = await fetch('http://localhost:7000/api/v1/management', {
+        const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

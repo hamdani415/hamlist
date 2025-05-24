@@ -8,7 +8,7 @@ const Tombolhapus = ({id}) => {
   const handlehapus = async (e) => {
     e.preventDefault()
     const data = {id}
-    const response = await fetch('http://localhost:5000/api/v1/todolist', {
+    const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist', {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"

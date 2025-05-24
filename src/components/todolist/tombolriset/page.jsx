@@ -7,7 +7,7 @@ const Tombolrisetmanagement = () => {
       const handlehapus = async (e) => {
           e.preventDefault()
          if (confirm("apakah anda yakin")) {
-           const respose = await fetch("http://localhost:5000/api/v1/todolist-riset",{
+           const respose = await fetch("https://bakendtodolist-production.up.railway.app/api/v1/todolist-riset",{
                method : "DELETE" ,
                  headers: {
                    "Content-Type": "application/json"

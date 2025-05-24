@@ -8,7 +8,7 @@ const Tombolselesai = ({ pekerjaan, jam, id }) => {
         e.preventDefault()
         const status = "selesai"
         const data = { pekerjaan, jam, status, id }
-        const response = await fetch('http://localhost:5000/api/v1/todolist', {
+        const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist', {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

@@ -5,7 +5,7 @@ import Tombolrisetmanagement from '@/components/management/tombolriset/page'
 import React from 'react'
 
 const page = async () => {
-    const response = await fetch('http://localhost:7000/api/v1/management')
+    const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management')
     const { data } = await response.json()
     return (
         <div>

@@ -8,7 +8,7 @@ const Tombolselesaimanagement = ({ pekerjaan, tanggal, id }) => {
         e.preventDefault()
         const status = "selesai"
         const data = { pekerjaan, tanggal, status, id }
-        const response = await fetch('http://localhost:7000/api/v1/management', {
+        const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management', {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

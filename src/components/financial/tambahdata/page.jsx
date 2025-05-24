@@ -15,7 +15,7 @@ const Tambahfinancial = () => {
         e.preventDefault()
         setloading(true)
         const data = {tanggal , pengeluaran, harga}
-        const response = await fetch('http://localhost:4000/api/v1/financial', {
+        const response = await fetch('https://backendfinancial-production-b21c.up.railway.app/api/v1/financial', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

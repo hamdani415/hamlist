@@ -5,7 +5,7 @@ import Tombolselesai from '@/components/todolist/tombolselesai/page'
 import React from 'react'
 
 const page = async () => {
-    const response = await fetch('http://localhost:5000/api/v1/todolist')
+    const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist')
     const { data } = await response.json()
     return (
         <div>

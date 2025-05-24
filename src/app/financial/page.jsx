@@ -3,7 +3,7 @@ import Tambahfinancial from '@/components/financial/tambahdata/page'
 import React from 'react'
 
 const page = async () => {
-    const response = await fetch('http://localhost:4000/api/v1/financial')
+    const response = await fetch('https://backendfinancial-production-b21c.up.railway.app/api/v1/financial')
     const { data } = await response.json()
     const rupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' })
     const total = data.reduce((acc, item) => {

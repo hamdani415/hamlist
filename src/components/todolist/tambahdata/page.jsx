@@ -17,7 +17,7 @@ const Tambahtodolist = () => {
         setloading(true)
         const status = 'belum'
         const data = { pekerjaan, jam, status }
-        const response = await fetch('http://localhost:5000/api/v1/todolist', {
+        const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
