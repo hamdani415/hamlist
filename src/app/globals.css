@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.contener {
+    /* width: 100%;
+    max-width: 400vh; */
+    /* height: 400px ; */
+    overflow: hidden;
+    margin: auto;
+    /* border-radius: 12px; */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.slider {
+    display: flex;
+    gap: 10px;
+    /* width: 300%; */
+    animation: slide 20s infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.slider img {
+    /* width: 100%; */
+    object-fit: cover;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slide {
+    0% {
+        transform: translateX(42%);
+    }
+
+    25% {
+        transform: translateX(0%);
+    }
+
+    50% {
+        transform: translateX(-42%);
+    }
+    75% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(42%);
+    }
+   
+
+ 
+}
+
+@media screen and (max-width: 768px) {
+
+    .slider {
+        display: flex;
+        gap: 10px;
+        /* width: 300%; */
+        animation: slide 20s infinite;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(100%);
+        }
+
+        25% {
+            transform: translateX(0%);
+        }
+
+        50% {
+            transform: translateX(-100%);
+        }
+
+        75% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    .slider {
+        display: flex;
+        gap: 10px;
+        /* width: 300%; */
+        animation: slide 20s infinite;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(100%);
+        }
+
+        25% {
+            transform: translateX(0%);
+        }
+
+        50% {
+            transform: translateX(-100%);
+        }
+
+        75% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+}
+
+
+
+.loading {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background:
+        radial-gradient(farthest-side, #3179E5 94%, #0000) top/16px 16px no-repeat,
+        conic-gradient(#0000 30%, #3179E5);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 16px), #000 0);
+    animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+    100% {
+        transform: rotate(1turn)
+    }
 }
