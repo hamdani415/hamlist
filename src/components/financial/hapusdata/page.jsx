@@ -1,5 +1,6 @@
 "use client"
 
+import { TrashIcon } from '@phosphor-icons/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -8,7 +9,7 @@ const Hapusdata = ({id}) => {
   const handlehapus = async (e) => {
     e.preventDefault()
     const data = {id}
-    const response = await fetch('https://backendfinancial-production-b21c.up.railway.app/api/v1/financial', {
+    const response = await fetch('https://backendfinancial-production-4126.up.railway.app/api/v1/financial', {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -27,8 +28,8 @@ const Hapusdata = ({id}) => {
     
   }
   return (
-    <div>
-      <button onClick={handlehapus} className='text-white font-bold bg-red-500 px-1 rounded-full'>X</button>
+    <div className='flex justify-center items-center text-center'>
+      <button onClick={handlehapus} className='text-red-500'><TrashIcon size={32} /></button>
     </div>
   )
 }

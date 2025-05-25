@@ -1,10 +1,12 @@
 import Financial from '@/components/financial/page'
+import { authUserSesion } from '@/libs/libs-auth'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+  const user = await authUserSesion()
   return (
     <div>
-      <Financial/>
+      <Financial email={user?.email} user={user}/>
     </div>
   )
 }

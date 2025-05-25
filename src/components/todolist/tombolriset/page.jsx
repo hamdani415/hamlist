@@ -1,4 +1,5 @@
 "use client"
+import { TrashIcon } from '@phosphor-icons/react'
 import { useRouter } from 'next/navigation'
 
 
@@ -7,7 +8,7 @@ const Tombolrisetmanagement = () => {
       const handlehapus = async (e) => {
           e.preventDefault()
          if (confirm("apakah anda yakin")) {
-           const respose = await fetch("https://bakendtodolist-production.up.railway.app/api/v1/todolist-riset",{
+           const respose = await fetch("https://backendtodolist-production-7994.up.railway.app/api/v1/todolist-riset",{
                method : "DELETE" ,
                  headers: {
                    "Content-Type": "application/json"
@@ -29,7 +30,7 @@ const Tombolrisetmanagement = () => {
       }
     return (
       <div className='flex justify-center items-center text-center'>
-        <button onClick={handlehapus} className='bg-red-500 text-white px-2 py-1 rounded-xl'>Reset</button>
+        <button onClick={handlehapus} className='bg-red-500 text-white px-2 py-1 rounded-xl'><TrashIcon size={32} /></button>
       </div>
     )
   }

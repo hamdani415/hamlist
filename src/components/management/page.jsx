@@ -5,26 +5,25 @@ import Tombolselesaimanagement from '@/components/management/tombolselesai/page'
 import Tombolrisetmanagement from '@/components/management/tombolriset/page'
 import { use, useEffect, useState } from 'react'
 
-const Management = () => {
+const Management = ({email , user}) => {
     const [data, setdata] = useState([])
 
     useEffect(() => {
         async function getdata() {
-            const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management')
+            const response = await fetch(`https://backendmanagement-production.up.railway.app/api/v1/management?email=${email}`)
             const result = await response.json()
             setdata(result.data)
         }
         getdata()
     }, [])
-    // const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management')
-    // const { data } = await response.json()
+ 
     return (
         <div>
             <div className='flex justify-between p-4'>
                 <h1 className='font-bold text-blue-400 text-2xl'>Task Management</h1>
                 <div className='flex gap-2 items-center'>
-                    <Tambahmanagement />
-                    <Tombolrisetmanagement />
+                    <Tambahmanagement email={email} user={user}/>
+                    <Tombolrisetmanagement/>
                 </div>
             </div>
             {data.map((item) => {
@@ -36,7 +35,7 @@ const Management = () => {
                                     <p className='text-blue-600 font-bold'>{item.tanggal}</p>
                                     <p className='text-white font-bold w-full'>{item.pekerjaan}</p>
                                     <div className='flex gap-6 items-center'>
-                                        <Tombolselesaimanagement pekerjaan={item.pekerjaan} jam={item.tanggal} id={item.id} />
+                                        <Tombolselesaimanagement email={email} pekerjaan={item.pekerjaan} jam={item.tanggal} id={item.id} />
                                     </div>
                                 </div>
                             </div> :

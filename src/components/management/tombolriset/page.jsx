@@ -1,4 +1,5 @@
 "use client"
+import { TrashIcon } from '@phosphor-icons/react'
 import { useRouter } from 'next/navigation'
 
 
@@ -29,7 +30,7 @@ const Tombolrisetmanagement = () => {
       }
     return (
       <div className='flex justify-center items-center text-center'>
-        <button onClick={handlehapus} className='bg-red-500 text-white px-2 py-1 rounded-xl'>Reset</button>
+        <button onClick={handlehapus} className='bg-red-500 text-white px-2 py-1 rounded-xl'><TrashIcon size={32} /></button>
       </div>
     )
   }

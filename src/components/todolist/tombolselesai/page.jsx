@@ -1,14 +1,15 @@
 "use client"
 
+import { CheckFatIcon } from "@phosphor-icons/react"
 import { useRouter } from "next/navigation"
 
-const Tombolselesai = ({ pekerjaan, jam, id }) => {
+const Tombolselesai = ({ pekerjaan, jam, id , email }) => {
     const router = useRouter()
     const handleselesai = async (e) => {
         e.preventDefault()
         const status = "selesai"
-        const data = { pekerjaan, jam, status, id }
-        const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist', {
+        const data = { pekerjaan, jam, status, id , email }
+        const response = await fetch('https://backendtodolist-production-7994.up.railway.app/api/v1/todolist', {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -30,7 +31,7 @@ const Tombolselesai = ({ pekerjaan, jam, id }) => {
     }
     return (
         <div className="flex justify-center items-center text-center">
-            <button onClick={handleselesai} className='bg-blue-600 text-white px-2 py-1 rounded-xl'>selesai</button>
+            <button onClick={handleselesai} className='bg-blue-600 text-white px-2 py-1 rounded-xl'><CheckFatIcon size={32} /></button>
         </div>
     )
 }

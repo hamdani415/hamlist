@@ -1,9 +1,10 @@
 "use client"
+import { CheckFatIcon } from '@phosphor-icons/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 
-const Tambahtodolist = () => {
+const Tambahtodolist = ({email , user}) => {
     const [pekerjaan, setpekerjaan] = useState('')
     const [jam, setjam] = useState('')
     const [loading, setloading] = useState(false)
@@ -13,11 +14,10 @@ const Tambahtodolist = () => {
 
     const handletambahdata = async (e) => {
         e.preventDefault()
-
         setloading(true)
         const status = 'belum'
-        const data = { pekerjaan, jam, status }
-        const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist', {
+        const data = { pekerjaan, jam, status , email }
+        const response = await fetch('https://backendtodolist-production-7994.up.railway.app/api/v1/todolist', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -50,7 +50,12 @@ const Tambahtodolist = () => {
 
     const handletombolopen = (e) => {
         e.preventDefault()
-        setopen(true)
+        if(!user){
+            alert('anda harus login terlebih dahulu')
+            return
+        }else{
+            setopen(true)
+        }
     }
     const handletombolclose = (e) => {
         e.preventDefault()
@@ -80,9 +85,9 @@ const Tambahtodolist = () => {
                             </div>
                         </div>
                         <div className='flex gap-2 pt-2 justify-center items-center px-4'>
-                            <button className='bg-red-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4' onClick={handletombolclose}>BATAL</button>
-                            <button className='bg-green-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4' onClick={handletambahdata}
-                                disabled={loading}>{loading ? <p>Menambahkan...</p> : <p>TAMBAH</p>}</button>
+                            <button className='bg-red-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4' onClick={handletombolclose}>X</button>
+                            <button className='bg-green-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4 flex justify-center items-center' onClick={handletambahdata}
+                                disabled={loading}>{loading ? <p>Menambahkan...</p> : <p><CheckFatIcon size={24} color='white' /></p>}</button>
                         </div>
 
                     </div>

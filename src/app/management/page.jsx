@@ -1,10 +1,12 @@
 import Management from '@/components/management/page'
+import { authUserSesion } from '@/libs/libs-auth'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+  const user = await authUserSesion()
   return (
     <div>
-      <Management/>
+      <Management email={user?.email} user={user}/>
     </div>
   )
 }

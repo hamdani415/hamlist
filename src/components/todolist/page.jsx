@@ -5,12 +5,12 @@ import Tombolriset from '@/components/todolist/tombolriset/page'
 import Tombolselesai from '@/components/todolist/tombolselesai/page'
 import React, { useEffect, useState } from 'react'
 
-const Todolist = () => {
+const Todolist = ({email , user}) => {
     const [data, setdata] = useState([])
 
     useEffect(() => {
         async function getdata() {
-            const response = await fetch('https://bakendtodolist-production.up.railway.app/api/v1/todolist')
+            const response = await fetch(`https://backendtodolist-production-7994.up.railway.app/api/v1/todolist?email=${email}`)
             const result = await response.json()
             setdata(result.data)
         }
@@ -21,7 +21,7 @@ const Todolist = () => {
             <div className='flex justify-between p-4'>
                 <h1 className='font-bold text-blue-400 text-2xl'>To Do List</h1>
                 <div className='flex gap-2 items-center'>
-                <Tambahtodolist />
+                <Tambahtodolist email={email} user={user}/>
                 <Tombolriset/>
                 </div>
             </div>
@@ -34,7 +34,7 @@ const Todolist = () => {
                                     <p className='text-white font-bold w-full'>{item.pekerjaan}</p>
                                     <div className='flex gap-6 items-center'>
                                         <p className='text-blue-600 font-bold'>{item.jam}</p>
-                                        <Tombolselesai pekerjaan={item.pekerjaan} jam={item.jam} id={item.id} />
+                                        <Tombolselesai email={email} pekerjaan={item.pekerjaan} jam={item.jam} id={item.id} />
                                     </div>
                                 </div>
                             </div> :
