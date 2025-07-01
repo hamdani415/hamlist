@@ -1,15 +1,13 @@
 "use client"
-
 import { CheckFatIcon } from "@phosphor-icons/react"
-import { useRouter } from "next/navigation"
 
-const Tombolselesaimanagement = ({ pekerjaan, tanggal, id , email}) => {
-    const router = useRouter()
+const Tombolselesaimanagement = ({ pekerjaan, tanggal, id , email , getData}) => {
+  
     const handleselesai = async (e) => {
         e.preventDefault()
         const status = "selesai"
         const data = { pekerjaan, tanggal, status, email , id }
-        const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/management`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -17,13 +15,11 @@ const Tombolselesaimanagement = ({ pekerjaan, tanggal, id , email}) => {
             body: JSON.stringify(data)
         })
         const hasil = await response.json()
-        if(hasil.status === 200) {
-            console.log(hasil)
+        if(hasil.statuscode === 200) {
             alert('okeh')
-            router.refresh()
+            getData()
         
         } else {
-            console.log(hasil.error)
             alert("ada yang eror")
         }
 

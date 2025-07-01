@@ -1,22 +1,24 @@
 "use client"
 import { CheckFatIcon } from '@phosphor-icons/react'
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-const Tambahfinancial = ({email , user}) => {
+const Tambahfinancial = ({ email, user,getData }) => {
     const [pengeluaran, setpengeluaran] = useState('')
     const [harga, setharga] = useState('')
-    const tanggal = new Date().toISOString().slice(0, 10)
+    const [tanggal, settanggal] = useState('')
+    const [message , setMessage] = useState('')
+    // const tanggal = new Date().toISOString().slice(0, 10)
     const [loading, setloading] = useState(false)
     const [open, setopen] = useState(false)
-    const router = useRouter()
 
+
+   
 
     const handletambahdata = async (e) => {
         e.preventDefault()
         setloading(true)
-        const data = {tanggal , pengeluaran, harga , email}
-        const response = await fetch('https://backendfinancial-production-4126.up.railway.app/api/v1/financial', {
+        const data = { tanggal : new Date(tanggal), pengeluaran, harga, email }
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -24,22 +26,23 @@ const Tambahfinancial = ({email , user}) => {
             body: JSON.stringify(data)
         })
         const hasil = await response.json()
+        // console.log(hasil)
         if (hasil.message === "berhasil") {
-            console.log(hasil)
             alert('data berhasil di tambahkan')
             setpengeluaran('')
             setharga('')
             setopen(false)
-            router.refresh()
-
-        } else {
-            console.log(hasil)
-            alert("gagal menambahkan data")
+            getData()
+        } else if(hasil.errors && hasil.errors.length > 0) {
+           setMessage(hasil.errors?.[0]?.msg)
+        } else{
+            setMessage("terjadi kesalahan")
         }
         setloading(false)
-        router.refresh()
-        
-
+    }
+    const handletanggal = (e) => {
+        const val = e.target.value
+        settanggal(val)
     }
     const handlepengeluaran = (e) => {
         setpengeluaran(e.target.value)
@@ -51,10 +54,10 @@ const Tambahfinancial = ({email , user}) => {
 
     const handletombolopen = (e) => {
         e.preventDefault()
-        if(!user){
+        if (!user) {
             alert('anda harus login terlebih dahulu')
             return
-        }else{
+        } else {
             setopen(true)
         }
     }
@@ -66,23 +69,27 @@ const Tambahfinancial = ({email , user}) => {
     }
 
 
-
-
     return (
         <div>
             <button onClick={handletombolopen} className='text-3xl font-bold text-blue-400'>+</button>
             {open && (
                 <div className=' fixed right-0.5 w-full flex justify-center items-center'>
-                    <div className='bg-green-300  top-20 h-52 rounded-xl md:w-2/4 sm:w-3/4 w-full mx-4 mt-32  z-10 shadow-black shadow-xl'>
-                        <h1 className='p-2 font-bold text-blue-500'>TO DO LIST</h1>
-                        <div className='flex md:justify-center gap-2 sm:justify-center sm:gap-4 md:gap-4 justify-evenly items-center p-4 '>
-                            <div className='flex flex-col justify-center items-center'>
+                    <div className='bg-green-300  rounded-xl md:w-2/4 sm:w-3/4 w-full mx-4 pb-8 mt-10 z-10 shadow-black shadow-xl'>
+                        <h1 className='p-2 font-bold text-blue-500'>EXPENSES</h1>
+                        <div className='p-4 '>
+                            <div className=''>
+                                <p className='text-white font-semibold'>TANGGAL</p>
+                                <input type="date" className='bg-white md:px-8 sm:px-8 rounded-2xl w-full text-blue-500 font-semibold p-2' value={tanggal} onChange={handletanggal} />
+                            </div>
+                            <div className='py-4'>
                                 <p className='text-white font-semibold'>PENGELUARAN</p>
                                 <input type="text" className='w-full md:px-8 sm:px-8 text-blue-500 font-semibold p-2 border border-white rounded-2xl bg-white' placeholder='makan..' value={pengeluaran} onChange={handlepengeluaran} />
                             </div>
-                            <div className='flex flex-col justify-center items-center'>
-                                <p className='text-white font-semibold'>JAM</p>
-                                <input placeholder='2000' className='bg-white md:px-8 sm:px-8 rounded-2xl text-blue-500 font-semibold p-2' type="number" value={harga} onChange={handleharga} />
+                            <div className=''>
+                                <p className='text-white font-semibold'>TOTAL</p>
+                                <input placeholder='2000' className='bg-white md:px-8 sm:px-8 w-full rounded-2xl text-blue-500 font-semibold p-2' type="number" value={harga} onChange={handleharga} />
+                                <p className='text-red-500 pt-2 md:px-8 sm:px-8'>{message}</p>
+
                             </div>
                         </div>
                         <div className='flex gap-2 pt-2 justify-center items-center px-4'>

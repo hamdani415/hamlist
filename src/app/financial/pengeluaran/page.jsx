@@ -1,12 +1,13 @@
-import Todolist from "@/components/todolist/page"
+import Financial from '@/components/pengeluaran/page'
 import { authUserSesion } from '@/libs/libs-auth'
 import React from 'react'
 
-const page = async() => {
+const page = async () => {
   const user = await authUserSesion()
+
   return (
     <div>
-      <Todolist email={user?.email} user={user}/>
+      <Financial email={user?.email} user={user}/>
     </div>
   )
 }

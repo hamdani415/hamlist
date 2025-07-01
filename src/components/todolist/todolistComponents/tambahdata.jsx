@@ -1,23 +1,23 @@
 "use client"
-import { CheckFatIcon, TrashIcon } from '@phosphor-icons/react'
-import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import { CheckFatIcon } from '@phosphor-icons/react'
+import { useState } from 'react'
 
-const Tambahmanagement = ({email , user}) => {
+
+const Tambahtodolist = ({ email, user, getData }) => {
     const [pekerjaan, setpekerjaan] = useState('')
-    const [tanggal, settanggal] = useState('')
+    const [jam, setjam] = useState('')
     const [loading, setloading] = useState(false)
     const [open, setopen] = useState(false)
-    const router = useRouter()
+    const [message, setMessage] = useState('')
+
 
 
     const handletambahdata = async (e) => {
         e.preventDefault()
-
         setloading(true)
         const status = 'belum'
-        const data = { pekerjaan, tanggal, status , email }
-        const response = await fetch('http://localhost:7000/api/v1/management', {
+        const data = { pekerjaan, jam, status, email }
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/todolist`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -26,26 +26,25 @@ const Tambahmanagement = ({email , user}) => {
         })
         const hasil = await response.json()
         if (hasil.message === "berhasil") {
-            console.log(hasil)
             alert('data berhasil di tambahkan')
             setopen(false)
             setpekerjaan('')
-            settanggal('')
+            setjam('')
             setopen(false)
+            getData()
 
         } else {
-            console.log(hasil)
-            alert("gagal menambahkan data")
+            setMessage(hasil.errors?.[0]?.msg)
         }
         setloading(false)
-        router.refresh()
+
 
     }
     const handlepekerjaan = (e) => {
         setpekerjaan(e.target.value)
     }
-    const handletanggal = (e) => {
-        settanggal(e.target.value)
+    const handlejam = (e) => {
+        setjam(e.target.value)
     }
 
     const handletombolopen = (e) => {
@@ -53,14 +52,14 @@ const Tambahmanagement = ({email , user}) => {
         if (!user) {
             alert('anda harus login terlebih dahulu')
             return
-        }else{
+        } else {
             setopen(true)
         }
     }
     const handletombolclose = (e) => {
         e.preventDefault()
         setpekerjaan('')
-        settanggal('')
+        setjam('')
         setopen(false)
     }
 
@@ -72,22 +71,23 @@ const Tambahmanagement = ({email , user}) => {
             <button onClick={handletombolopen} className='text-3xl font-bold text-blue-400'>+</button>
             {open && (
                 <div className=' fixed right-0.5 w-full flex justify-center items-center'>
-                    <div className='bg-green-300  top-20 h-52 rounded-xl md:w-2/4 sm:w-3/4 w-full mx-4 mt-32  z-10 shadow-black shadow-xl'>
+                    <div className='bg-green-300  rounded-xl md:w-2/4 sm:w-3/4 w-full mx-4 mt-20 pb-8 z-10 shadow-black shadow-xl'>
                         <h1 className='p-2 font-bold text-blue-500'>TO DO LIST</h1>
-                        <div className='flex md:justify-center gap-2 sm:justify-center sm:gap-4 md:gap-4 justify-evenly items-center p-4 '>
-                            <div className='flex flex-col justify-center items-center'>
+                        <div className=' p-4 '>
+                            <div className=''>
                                 <p className='text-white font-semibold'>AKTIVITAS HARI INI</p>
                                 <input type="text" className='w-full md:px-8 sm:px-8 text-blue-500 font-semibold p-2 border border-white rounded-2xl bg-white' placeholder='mau melakukan apa?' value={pekerjaan} onChange={handlepekerjaan} />
                             </div>
-                            <div className='flex flex-col justify-center items-center'>
-                                <p className='text-white font-semibold'>TANGGAL</p>
-                                <input placeholder='00.00' className='bg-white md:px-8 sm:px-8 rounded-2xl text-blue-500 font-semibold p-2' type="date" value={tanggal} onChange={handletanggal} />
+                            <div className='pt-4'>
+                                <p className='text-white font-semibold'>JAM</p>
+                                <input placeholder='00.00' className='bg-white md:px-8 sm:px-8 w-full rounded-2xl text-blue-500 font-semibold p-2' type="time" value={jam} onChange={handlejam} />
+                                <p className='text-red-500 pt-2 md:px-8 sm:px-8'>{message}</p>
                             </div>
                         </div>
                         <div className='flex gap-2 pt-2 justify-center items-center px-4'>
                             <button className='bg-red-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4' onClick={handletombolclose}>X</button>
                             <button className='bg-green-500 text-white font-semibold rounded-2xl p-2 w-1/3 md:w-1/4 sm:w-1/4 flex justify-center items-center' onClick={handletambahdata}
-                                disabled={loading}>{loading ? <p>Menambahkan...</p> : <p><CheckFatIcon size={20}/></p>}</button>
+                                disabled={loading}>{loading ? <p>Menambahkan...</p> : <p><CheckFatIcon size={24} color='white' /></p>}</button>
                         </div>
 
                     </div>
@@ -97,4 +97,4 @@ const Tambahmanagement = ({email , user}) => {
     )
 }
 
-export default Tambahmanagement
+export default Tambahtodolist

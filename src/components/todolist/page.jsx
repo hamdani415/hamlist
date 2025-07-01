@@ -1,31 +1,31 @@
 "use client"
-import Tambahtodolist from '@/components/todolist/tambahdata/page'
-import Tombolhapus from '@/components/todolist/tombolhapus/page'
-import Tombolriset from '@/components/todolist/tombolriset/page'
-import Tombolselesai from '@/components/todolist/tombolselesai/page'
+import Tambahtodolist from '@/components/todolist/todolistComponents/tambahdata'
+import Tombolhapus from '@/components/todolist/todolistComponents/hapusdata'
+import Tombolriset from '@/components/todolist/todolistComponents/risetdata'
+import Tombolselesai from '@/components/todolist/todolistComponents/tombolselesai'
 import React, { useEffect, useState } from 'react'
 
 const Todolist = ({email , user}) => {
     const [data, setdata] = useState([])
+    const getData = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/todolist?email=${email}`)
+        const result = await response.json()
+        setdata(result)
+    }
 
     useEffect(() => {
-        async function getdata() {
-            const response = await fetch(`https://backendtodolist-production-7994.up.railway.app/api/v1/todolist?email=${email}`)
-            const result = await response.json()
-            setdata(result.data)
-        }
-        getdata()
+        getData()
     }, [])
     return (
         <div>
             <div className='flex justify-between p-4'>
                 <h1 className='font-bold text-blue-400 text-2xl'>To Do List</h1>
                 <div className='flex gap-2 items-center'>
-                <Tambahtodolist email={email} user={user}/>
-                <Tombolriset/>
+                <Tambahtodolist email={email} user={user} getData={getData}/>
+                <Tombolriset getData={getData}/>
                 </div>
             </div>
-            {data.map((item) => {
+            {data?.map((item) => {
                 return (
                     <div key={item.id} >
                         {
@@ -34,7 +34,7 @@ const Todolist = ({email , user}) => {
                                     <p className='text-white font-bold w-full'>{item.pekerjaan}</p>
                                     <div className='flex gap-6 items-center'>
                                         <p className='text-blue-600 font-bold'>{item.jam}</p>
-                                        <Tombolselesai email={email} pekerjaan={item.pekerjaan} jam={item.jam} id={item.id} />
+                                        <Tombolselesai email={email} pekerjaan={item.pekerjaan} jam={item.jam} id={item.id} getData={getData}/>
                                     </div>
                                 </div>
                             </div> :
@@ -43,7 +43,7 @@ const Todolist = ({email , user}) => {
                                         <p className='text-white font-bold w-full'>{item.pekerjaan}</p>
                                         <div className='flex gap-6 items-center'>
                                             <p className='text-slate-600 font-bold'>{item.jam}</p>
-                                            <Tombolhapus id={item.id} />
+                                            <Tombolhapus id={item.id} getData={getData}/>
                                         </div>
                                     </div>
                                 </div>

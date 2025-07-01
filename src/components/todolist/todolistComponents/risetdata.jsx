@@ -1,27 +1,25 @@
 "use client"
 import { TrashIcon } from '@phosphor-icons/react'
-import { useRouter } from 'next/navigation'
 
 
-const Tombolrisetmanagement = () => {
-    const router = useRouter()
+
+const Tombolrisetmanagement = ({email , getData}) => {
       const handlehapus = async (e) => {
           e.preventDefault()
+          const data = {email}
          if (confirm("apakah anda yakin")) {
-           const respose = await fetch("https://backendtodolist-production-7994.up.railway.app/api/v1/todolist-riset",{
+           const respose = await fetch(`${process.env.NEXT_PUBLIC_API}/todolist`,{
                method : "DELETE" ,
                  headers: {
                    "Content-Type": "application/json"
                },
-               body: JSON.stringify()
+               body: JSON.stringify(data)
            })
            const hasil = await respose.json()
-           if (hasil.status === 200) {
-               console.log(hasil)
+           if (hasil.statuscode === 200) {
                alert('berhasil menghapus')
-               router.refresh()
+               getData()
            }else{
-               console.log(hasil);
                alert("ada kesalahan sistem")
            }
          }else{

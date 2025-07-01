@@ -1,15 +1,13 @@
 "use client"
 
 import { TrashIcon } from '@phosphor-icons/react'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 
-const Tombolhapusmanagement = ({id}) => {
-  const router = useRouter()
-  const handlehapus = async (e) => {
+const Tombolhapusmanagement = ({id , getData}) => {
+   const handlehapus = async (e) => {
     e.preventDefault()
     const data = {id}
-    const response = await fetch('https://backendmanagement-production.up.railway.app/api/v1/management', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/management`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -17,14 +15,13 @@ const Tombolhapusmanagement = ({id}) => {
       body: JSON.stringify(data)
     })
     const hasil = await response.json()
-    if (hasil.status === 200) {
-      console.log(hasil)
+    if (hasil.statuscode === 200) {
       alert('berhasil menghapus')
-      router.refresh()
+      getData()
     }else{
-      console.log(hasil);
       alert("ada kesalahan sistem")
     }
+
     
   }
   return (
