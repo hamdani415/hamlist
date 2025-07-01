@@ -40,7 +40,7 @@ const FinancialComponents = ({ email }) => {
             </Link>
             <Link href={'/financial/pemasukan'} className=' border-green-400 p-2 border-2 rounded-2xl'>
                 <p className='text-xl font-bold text-green-500'>PEMASUKAN</p>
-                <ChartLineDownIcon className='text-green-500 w-full' size={150} />
+                <ChartLineUpIcon className='text-green-500 w-full' size={150} />
                 <p className='text-xl font-bold text-blue-400'>{rupiah.format(totalpemasukan)}</p>
             </Link>
             <div className='border-sky-400 p-2 border-2 rounded-2xl'>
