@@ -64,7 +64,7 @@ const Pemasukan = ({ email, user }) => {
                                         <p className='font-bold text-lg text-blue-700'>{item.pemasukan}</p>
                                     </div>
                                     <div className='flex gap-2 '>
-                                        <p className='font-bold text-white'>{rupiah.format(item.harga)}</p>
+                                        <p className='font-bold pt-1 text-white'>{rupiah.format(item.harga)}</p>
                                         <Hapusdata id={item.id} getData={getData} />
                                     </div>
                                 </div>
