@@ -10,17 +10,17 @@ const Financial = ({ email, user }) => {
     const [total, settotal] = useState(0)
     const router = useRouter()
     const tanggal = new Date()
-    const formatTanggal = new Intl.DateTimeFormat('id-ID' , {
-        weekday : 'long',
-        year : 'numeric',
-        month : 'long',
-        day : 'numeric'
+    const formatTanggal = new Intl.DateTimeFormat('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     }).format(tanggal)
 
     const getData = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial?email=${email}`)
         const result = await response.json()
-        setdata(result)
+        setdata(result.sort((a, b) => new Date(b.id) - new Date(a.id)))
         const totalharga = result.reduce((acc, item) => acc + item.harga, 0)
         settotal(totalharga)
     }
@@ -53,23 +53,28 @@ const Financial = ({ email, user }) => {
                     <button className='p-2 rounded-md bg-blue-400 text-white font-bold' onClick={() => router.push('/financial/pengeluaran/periode')}>Pilih periode</button>
                 </div>
             </div>
-            {data?.map((item) => {
-                return (
-                    <div key={item.id} className='border-b-2 border-blue-400 bg-blue-300 rounded-2xl mb-2'>
-                        <div className='flex justify-between items-center p-4'>
-                            <div className='flex gap-4 items-center'>
-                                <p className='font-bold '>{item.tanggal.slice(0, 10)}</p>
-                                <p className='font-bold text-lg text-blue-700'>{item.pengeluaran}</p>
+            <div>
+                {data.length === 0 ? <p className='text-center text-slate-400 text-2xl font-bold italic pt-36'>Tidak ada data</p>
+                    :
+                    (data?.map((item) => {
+                        return (
+                            <div key={item.id} className='border-b-2 border-blue-400 bg-blue-300 rounded-2xl mb-2'>
+                                <div className='flex justify-between items-center p-4'>
+                                    <div className='flex gap-4 items-center'>
+                                        <p className='font-bold '>{item.tanggal.slice(0, 10)}</p>
+                                        <p className='font-bold text-lg text-blue-700'>{item.pengeluaran}</p>
+                                    </div>
+                                    <div className='flex gap-2 '>
+                                        <p className='font-bold text-white'>{rupiah.format(item.harga)}</p>
+                                        <Hapusdata id={item.id} getData={getData} />
+                                    </div>
+                                </div>
                             </div>
-                            <div className='flex gap-2 '>
-                                <p className='font-bold text-white'>{rupiah.format(item.harga)}</p>
-                                <Hapusdata id={item.id} getData={getData} />
-                            </div>
-                        </div>
-                    </div>
-                )
-            })
-            }
+                        )
+                    })
+                    )
+                }
+            </div>
         </div>
     )
 }
