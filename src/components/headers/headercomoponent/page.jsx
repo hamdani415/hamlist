@@ -44,7 +44,7 @@ const Headercomoponent = ({ user }) => {
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/">HOME</a></li>
                         {user && <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/profile">PROFILE</a></li>}
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/todolist">TO DO LIST</a></li>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/management">TASK MANAGEMENT</a></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/management">MANAGEMENT</a></li>
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/financial">FINANCIAL</a></li>
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100  bg-white rounded-xl'> <a href="/about">ABOUT</a></li>
                     </ul>
