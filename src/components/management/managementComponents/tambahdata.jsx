@@ -43,7 +43,8 @@ const Tambahmanagement = ({ email, user, getData }) => {
         setpekerjaan(e.target.value)
     }
     const handletanggal = (e) => {
-        settanggal(e.target.value)
+          const val = e.target.value
+        settanggal(val)
     }
 
     const handletombolopen = (e) => {
