@@ -33,12 +33,12 @@ const FinancialComponents = ({ email }) => {
     })
     return (
         <div className='flex flex-col gap-4 p-8'>
-            <Link href={'/financial/pengeluaran'} className=' border-red-400 p-2 border-2 rounded-2xl'>
+            <Link href={'/financial/pengeluaran'} className=' border-red-400 p-2 border-2 rounded-2xl bg-red-100'>
                 <p className='text-xl font-bold text-red-500'>PENGELUARAN</p>
                 <ChartLineDownIcon className='text-red-500 w-full' size={150} />
                 <p className='text-xl font-bold text-blue-400'>{rupiah.format(totalpengeluaran)}</p>
             </Link>
-            <Link href={'/financial/pemasukan'} className=' border-green-400 p-2 border-2 rounded-2xl bg-sky-100'>
+            <Link href={'/financial/pemasukan'} className=' border-green-400 p-2 border-2 rounded-2xl'>
                 <p className='text-xl font-bold text-green-500'>PEMASUKAN</p>
                 <ChartLineUpIcon className='text-green-500 w-full' size={150} />
                 <p className='text-xl font-bold text-blue-400'>{rupiah.format(totalpemasukan)}</p>

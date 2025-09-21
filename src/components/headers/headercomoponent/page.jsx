@@ -24,7 +24,7 @@ const Headercomoponent = ({ user }) => {
 
     return (
         <div className='bg-blue-500 p-4 w-full justify-between flex items-center'>
-            <Link href='/' className='text-3xl text-white font-bold'>HAMLIST <span className='text-sm font-stretch-50% font-normal text-black'>V3.3</span></Link>
+            <Link href='/' className='text-3xl text-white font-bold'>HAMLIST</Link>
             <div className='flex gap-2 items-center'>
                 {!user && (
                     <div>
@@ -44,7 +44,7 @@ const Headercomoponent = ({ user }) => {
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/">HOME</a></li>
                         {user && <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/profile">PROFILE</a></li>}
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/todolist">TO DO LIST</a></li>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/management">TASK MANAGEMENT</a></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/management">MANAGEMENT</a></li>
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/financial">FINANCIAL</a></li>
                         <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100  bg-white rounded-xl'> <a href="/about">ABOUT</a></li>
                     </ul>
