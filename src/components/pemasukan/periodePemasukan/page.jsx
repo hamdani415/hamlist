@@ -45,30 +45,31 @@ const PeriodePemasukan = ({ email }) => {
                         <p className='font-bold bg-blue-400 text-white p-2 rounded-xl'>{rupiah.format(total)}</p>
                     </div>
                 </div>
-                <div className='flex gap-4 justify-center items-center'>
-                    <div>
+                <div className='flex gap-4  items-center border-b-2 border-blue-400 pb-2'>
+                    <div className='px-2'>
                         <p>Tanggal awal</p>
-                        <input type="date" className='border-1 border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
+                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
                     </div>
                     <div>
                         <p>Tanggal akhir</p>
-                        <input type="date" className='border-1 border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
+                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
+                    </div>
+                    <div className='p-2 flex flex-col gap-2'>
+                        <button className='bg-blue-400 p-2 mt-6 rounded-lg w-full' onClick={handlecari} >Cari</button>
                     </div>
                 </div>
-                <div className='p-2 mt-2 flex flex-col gap-2'>
-                    <button className='bg-blue-400 p-2 rounded-lg w-full' onClick={handlecari} >Cari</button>
-                </div>
             </div>
-            <div>
+            <div className='pt-2 px-1'>
+                {data.length === 0 && <p className='text-center text-slate-400 text-2xl font-bold italic pt-36'>Data tidak ditemukan</p>}
                 {data?.map((item) => {
                     return (
-                        <div key={item.id} className='border-b-2 border-blue-400 bg-blue-300 rounded-2xl mb-2'>
-                            <div className='flex justify-between items-center p-4'>
+                        <div key={item.id} className='border-b-2 border-blue-400 p-1 bg-blue-300 rounded-2xl mb-2'>
+                            <div className='flex justify-between items-center p-2 text-sm sm:text-lg md:text-lg'>
                                 <div className='flex gap-4 items-center'>
-                                    <p className='font-bold '>{item.tanggal.slice(0, 10)}</p>
+                                    <p className='font-semibold '>{item.tanggal.slice(0, 10)}</p>
                                     <p className='font-bold text-lg text-blue-700'>{item.pemasukan}</p>
                                 </div>
-                                <div className='flex gap-2 '>
+                                <div className='flex gap-2 text-lg '>
                                     <p className='font-bold text-white'>{rupiah.format(item.harga)}</p>
                                     <Hapusdata email={email} id={item.id} getData={handlecari} />
                                 </div>

@@ -1,4 +1,4 @@
-import Financial from '@/components/pengeluaran/page'
+import Financial from '../../../components/pengeluaran/page'
 import { authUserSesion } from '@/libs/libs-auth'
 import React from 'react'
 

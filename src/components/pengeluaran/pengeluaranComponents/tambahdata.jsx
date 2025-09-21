@@ -70,8 +70,8 @@ const Tambahfinancial = ({ email, user,getData }) => {
 
 
     return (
-        <div>
-            <button onClick={handletombolopen} className='text-3xl font-bold text-blue-400'>+</button>
+        <div >
+            <button onClick={handletombolopen} className='text-4xl font-bold text-green-500'>+</button>
             {open && (
                 <div className=' fixed right-0.5 w-full flex justify-center items-center'>
                     <div className='bg-green-300  rounded-xl md:w-2/4 sm:w-3/4 w-full mx-4 pb-8 mt-10 z-10 shadow-black shadow-xl'>
