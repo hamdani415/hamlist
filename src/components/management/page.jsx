@@ -27,7 +27,7 @@ const Management = ({ email, user }) => {
                     <Tombolrisetmanagement getData={getData} email={email} />
                 </div>
             </div>
-            <div>
+            <div className='py-2'>
                 {data.length === 0 ? <p className='text-center text-slate-400 text-2xl font-bold italic pt-36'>Tidak ada data</p>
                     :
                     (data?.map((item) => {
