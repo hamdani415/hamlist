@@ -10,11 +10,11 @@ const Pemasukan = ({ email, user }) => {
     const [total, settotal] = useState(0)
     const router = useRouter()
     const tanggal = new Date()
-    const formatTanggal = new Intl.DateTimeFormat('id-ID' , {
-        weekday : 'long',
-        year : 'numeric',
-        month : 'long',
-        day : 'numeric'
+    const formatTanggal = new Intl.DateTimeFormat('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     }).format(tanggal)
 
     const getData = async () => {
@@ -53,23 +53,26 @@ const Pemasukan = ({ email, user }) => {
                     <button className='p-2 px-4  rounded-xl bg-blue-400 border-2 border-blue-400 text-white font-semibold' onClick={() => router.push('/financial/pemasukan/periode')}>Filter</button>
                 </div>
             </div>
-            {data?.map((item) => {
-                return (
-                    <div key={item.id} className='border-b-2 border-blue-400 bg-blue-300 rounded-2xl mb-2'>
-                        <div className='flex justify-between items-center p-4'>
-                            <div className='flex gap-4 items-center'>
-                                <p className='font-bold '>{item.tanggal.slice(0, 10)}</p>
-                                <p className='font-bold text-lg text-blue-700'>{item.pemasukan}</p>
-                            </div>
-                            <div className='flex gap-2 '>
-                                <p className='font-bold text-white'>{rupiah.format(item.harga)}</p>
-                                <Hapusdata id={item.id} getData={getData} />
+            <div className='p-1'>
+                {data.length === 0 && <p className='text-center text-slate-400 text-2xl font-bold italic pt-36'>Tidak ada data</p>}
+                {data?.map((item) => {
+                    return (
+                        <div key={item.id} className='border-b-2 border-blue-400 text-sm md:text-lg sm:text-lg bg-blue-300 rounded-2xl mb-2 '>
+                            <div className='flex justify-between items-center p-3'>
+                                <div className='items-center'>
+                                    <p className='font-bold '>{item.tanggal.slice(0, 10)}</p>
+                                    <p className='font-bold text-lg text-blue-700'>{item.pemasukan}</p>
+                                </div>
+                                <div className='flex gap-2 '>
+                                    <p className='font-bold text-lg text-white'>{rupiah.format(item.harga)}</p>
+                                    <Hapusdata id={item.id} getData={getData} />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )
-            })
-            }
+                    )
+                })
+                }
+            </div>
         </div>
     )
 }

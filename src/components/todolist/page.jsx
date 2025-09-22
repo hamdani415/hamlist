@@ -18,8 +18,8 @@ const Todolist = ({ email, user }) => {
     }, [])
     return (
         <div>
-            <div className='flex justify-between p-4'>
-                <h1 className='font-bold text-blue-400 text-2xl'>To Do List</h1>
+            <div className='flex justify-between  border-b-2 border-blue-400 p-3 pt-5'>
+                <h1 className='font-bold text-blue-400 text-2xl '>To Do List</h1>
                 <div className='flex gap-2 items-center'>
                     <Tambahtodolist email={email} user={user} getData={getData} />
                     <Tombolriset getData={getData} />

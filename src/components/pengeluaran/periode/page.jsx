@@ -45,17 +45,17 @@ const PeriodePengeluaran = ({ email }) => {
                         <p className='font-bold bg-blue-400 text-white p-2 rounded-xl'>{rupiah.format(total)}</p>
                     </div>
                 </div>
-                <div className='flex gap-4  items-center border-b-2 border-blue-400 pb-2'>
+                <div className='flex gap-2  items-center border-b-2 border-blue-400 pb-2'>
                     <div className='px-2' >
                         <p>Tanggal awal</p>
-                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
+                        <input type="date" className='border-1 rounded-sm md:text-lg sm:text-lg text-sm border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
                     </div>
                     <div>
                         <p>Tanggal akhir</p>
-                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
+                        <input type="date" className='border-1 md:text-lg sm:text-lg text-sm rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
                     </div>
-                    <div className='p-2 flex flex-col gap-2'>
-                        <button className='bg-blue-400 p-2 mt-6 rounded-lg w-full' onClick={handlecari} >Cari</button>
+                    <div className='p-2 flex items-center flex-col gap-2'>
+                        <button className='bg-blue-400 p-2 mt-6 font-semibold text-white rounded-lg w-full' onClick={handlecari} >Cari</button>
                     </div>
                 </div>
             </div>

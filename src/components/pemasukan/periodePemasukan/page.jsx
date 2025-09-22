@@ -48,14 +48,14 @@ const PeriodePemasukan = ({ email }) => {
                 <div className='flex gap-4  items-center border-b-2 border-blue-400 pb-2'>
                     <div className='px-2'>
                         <p>Tanggal awal</p>
-                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
+                        <input type="date" className='border-1 md:text-lg sm:text-lg text-sm rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalawal} onChange={handletanggalAwal} />
                     </div>
                     <div>
                         <p>Tanggal akhir</p>
-                        <input type="date" className='border-1 rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
+                        <input type="date" className='border-1 md:text-lg sm:text-lg text-sm rounded-sm border-blue-400 p-1.5 text-blue-500' value={tanggalakhir} onChange={handletanggalAkhir} />
                     </div>
-                    <div className='p-2 flex flex-col gap-2'>
-                        <button className='bg-blue-400 p-2 mt-6 rounded-lg w-full' onClick={handlecari} >Cari</button>
+                    <div className='py-2 flex flex-col items-center'>
+                        <button className='bg-blue-400 text-white font-semibold p-2 mt-6 rounded-lg w-full' onClick={handlecari} >Cari</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@ const PeriodePemasukan = ({ email }) => {
                     return (
                         <div key={item.id} className='border-b-2 border-blue-400 p-1 bg-blue-300 rounded-2xl mb-2'>
                             <div className='flex justify-between items-center p-2 text-sm sm:text-lg md:text-lg'>
-                                <div className='flex gap-4 items-center'>
+                                <div className=' items-center'>
                                     <p className='font-semibold '>{item.tanggal.slice(0, 10)}</p>
                                     <p className='font-bold text-lg text-blue-700'>{item.pemasukan}</p>
                                 </div>
