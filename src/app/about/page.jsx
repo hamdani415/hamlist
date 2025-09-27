@@ -10,7 +10,7 @@ const page = () => {
       </p>
       <h1 className='font-bold text-red-500 pt-2'>PENTING!!</h1>
       <p>Semua data yang di masukan di website ini bakal masuk ke database dari website ini, jadi jika menurut anda data yang di masukan bakal penting, maka jangan gunakan website ini,
-        karena kami bisa melihat semua isi dari database ini. namun jika menurut anda data yang anda masukan tidak penting, maka anda bisa menggunakan website ini. Data hanya bisa di lihat oleh anda dan pemilik website
+        karena kami bisa melihat semua isi dari database ini. namun jika menurut anda data yang anda masukan tidak penting, maka anda bisa menggunakan website ini. Data hanya bisa di lihat oleh anda dan pemilik website.
       </p>
       <p className='py-4'>
         Website ini dibuat oleh <b>hamdani ganteng</b>
