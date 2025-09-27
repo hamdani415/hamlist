@@ -22,10 +22,11 @@ export const autoOption = {
         },
         async session({ session, token }) {
             session.user.email = token.email
+            session.accessToken = token   // 👈 tambahin di sini
             return session
-
         }
     }
+
 }
 
 const handler = NextAuth(autoOption)

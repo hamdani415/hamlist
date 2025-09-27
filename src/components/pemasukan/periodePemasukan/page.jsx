@@ -11,7 +11,12 @@ const PeriodePemasukan = ({ email }) => {
     // const router = useRouter()
     const handlecari = async () => {
         // e.preventDefault()
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan/search?email=${email}&tanggalawal=${tanggalawal}&tanggalakhir=${tanggalakhir}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan/search?email=${email}&tanggalawal=${tanggalawal}&tanggalakhir=${tanggalakhir}`,{
+           method : "GET",
+            headers : {
+                "x-api-key" : process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         setdata(result)
         const totalharga = result.reduce((acc, item) => acc + item.harga, 0)

@@ -8,13 +8,25 @@ const FinancialComponents = ({ email }) => {
     const [totalpengeluaran, setTotalpengeluaran] = useState(0)
     const [totalpemasukan, setTotalpemasukan] = useState(0)
     const getPengeluaran = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial?email=${email}`,{
+            method : "GET",
+            headers : {
+                "x-api-key" : process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         const total = result.reduce((acc, item) => acc + item.harga, 0)
         setTotalpengeluaran(total)
     }
     const getPemasukan = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan?email=${email}`,
+        {
+            method: "GET",
+            headers: {
+                "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+            }
+        }
+        )
         const result = await response.json()
         const total = result.reduce((acc, item) => acc + item.harga, 0)
         setTotalpemasukan(total)

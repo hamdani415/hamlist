@@ -18,7 +18,12 @@ const Financial = ({ email, user }) => {
     }).format(tanggal)
 
     const getData = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial?email=${email}`, {
+            method: "GET",
+            headers: {
+                "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         setdata(result.sort((a, b) => new Date(b.id) - new Date(a.id)))
         const totalharga = result.reduce((acc, item) => acc + item.harga, 0)

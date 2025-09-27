@@ -18,7 +18,14 @@ const Pemasukan = ({ email, user }) => {
     }).format(tanggal)
 
     const getData = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/pemasukan?email=${email}`,
+            {
+                method: "GET",
+                headers: {
+                    "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+                }
+            }
+        )
         const result = await response.json()
         setdata(result)
         const totalharga = result.reduce((acc, item) => acc + item.harga, 0)

@@ -8,7 +8,12 @@ import React, { useEffect, useState } from 'react'
 const Todolist = ({ email, user }) => {
     const [data, setdata] = useState([])
     const getData = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/todolist?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/todolist?email=${email}`, {
+            method: "GET",
+            headers: {
+                "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         setdata(result)
     }

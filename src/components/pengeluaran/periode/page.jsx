@@ -8,11 +8,16 @@ const PeriodePengeluaran = ({ email }) => {
     const [tanggalakhir, settanggalakhir] = useState('')
     const [data, setdata] = useState([])
     const [total, settotal] = useState(0)
-    const [kategory_id , setkategory_id] = useState('')
+    const [kategory_id, setkategory_id] = useState('')
     // const router = useRouter()
     const handlecari = async () => {
         // e.preventDefault()
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial/search?email=${email}&tanggalawal=${tanggalawal}&tanggalakhir=${tanggalakhir}&kategory_id=${kategory_id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/financial/search?email=${email}&tanggalawal=${tanggalawal}&tanggalakhir=${tanggalakhir}&kategory_id=${kategory_id}`, {
+            method: "GET",
+            headers: {
+                "x-api-key": process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         setdata(result)
         const totalharga = result.reduce((acc, item) => acc + item.harga, 0)
@@ -22,7 +27,7 @@ const PeriodePengeluaran = ({ email }) => {
         }
     }
 
-    const handleCategory  = (e) => {
+    const handleCategory = (e) => {
         const value = e.target.value
         setkategory_id(value)
     }

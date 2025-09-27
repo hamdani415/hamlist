@@ -9,7 +9,12 @@ const Management = ({ email, user }) => {
     const [data, setdata] = useState([])
 
     const getData = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/management?email=${email}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}/management?email=${email}`,{
+            method : "GET",
+            headers : {
+                "x-api-key" : process.env.NEXT_PUBLIC_API_KEY
+            }
+        })
         const result = await response.json()
         setdata(result)
     }
