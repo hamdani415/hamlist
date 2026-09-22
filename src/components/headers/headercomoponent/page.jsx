@@ -41,12 +41,12 @@ const Headercomoponent = ({ user }) => {
             {isOpen && (
                 <div className='hamdaniganteng absolute right-4 top-16 bg-blue-200 py-8 text-black p-4 shadow-md rounded-md  md:w-1/5 sm:w-1/4 w-1/2 z-10'>
                     <ul className='space-y-4 justify-center items-center text-center text-blue-500'>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/">HOME</a></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <Link href="/">HOME</Link></li>
                         {user && <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/profile">PROFILE</a></li>}
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/todolist">TO DO LIST</a></li>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/management">MANAGEMENT</a></li>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <a href="/financial">FINANCIAL</a></li>
-                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100  bg-white rounded-xl'> <a href="/about">ABOUT</a></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <Link href="/todolist">TO DO LIST</Link></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <Link href="/management">MANAGEMENT</Link></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100 bg-white rounded-xl'> <Link href="/financial">FINANCIAL</Link></li>
+                        <li className='font-bold p-2 hover:scale-105 hover:bg-blue-100  bg-white rounded-xl'> <Link href="/about">ABOUT</Link></li>
                     </ul>
 
                 </div>
